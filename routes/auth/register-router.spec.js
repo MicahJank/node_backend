@@ -7,7 +7,10 @@ describe('register-router testing', () => {
 
     describe('registering a user', () => {
         it('should return 201 OK', () => {
-
+            // return db('users').truncate()
+            //         .then(() => {
+            //             return request(server).post('/api/register').send({ username: 'John', password: 'johnsnewpassword' })
+            //         })
         })
 
         it('should return a JSON object', () => {
@@ -15,7 +18,7 @@ describe('register-router testing', () => {
         })
 
         it('should return a token in the body', () => {
-            
+
         })
     })
 })
