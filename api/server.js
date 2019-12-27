@@ -12,5 +12,9 @@ configureMiddleware(server);
 
 server.use('/api', apiRouter);
 
+router.get('/', (req, res) => {
+    res.send('<h1>Welcome to the Hacker-News-Api Backend!</h1>');
+});
+
 
 module.exports = server;
