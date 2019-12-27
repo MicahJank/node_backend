@@ -9,11 +9,11 @@ const genToken = require('../genToken.js');
 router.post('/', (req, res) => {
    let { username, password } = req.body;
 
-   Users.findBy({ username: username })
+   Users.findBy({username})
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)) {
                 const token = genToken(user);
-                res.json({
+                res.status(200).json({
                     user: {
                         id: user.id,
                         username: user.username

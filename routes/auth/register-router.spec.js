@@ -3,8 +3,8 @@ const server = require('../../api/server.js');
 
 const db = require('../../data/dbConfig.js');
 
-beforeAll(async () => {
-    await db('users').truncate();
+afterAll(async () => {
+    await db('users').where({username: 'John'}).truncate()
 })
 
 describe('register-router testing', () => {
