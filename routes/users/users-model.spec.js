@@ -63,6 +63,19 @@ describe('users model testing', () => {
             expect(users).toBeDefined();
             expect(Array.isArray(users)).toBe(true);
         })
+    });
+
+    describe('updateUsername', () => {
+        it('return the updated user', async () => {
+            const createUser = await db('users').returning('id').insert({ username: 'BillyBob', password: 'mycoolpassword' })
+            const  [id]  = createUser;
+
+            const updatedUser = await Users.updateUsername(id, { username: 'NewBillyBob'});
+
+            expect(updatedUser).toBeDefined();
+            expect(typeof updatedUser).toBe('object');
+            expect(updatedUser.username).toBe('NewBillyBob');
+        } )
     })
 
 })

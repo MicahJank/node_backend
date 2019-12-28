@@ -6,7 +6,8 @@ module.exports = {
     findBy,
     findById,
     addUser,
-    removeUser
+    removeUser,
+    updateUsername
 }
 
 function find() {
@@ -34,5 +35,13 @@ function removeUser(id) {
     return db('users').where({id}).del()
             .then(count => {
                 return find();
+            })
+}
+
+function updateUsername(userId, newUsername) {
+    return db('users').where({ id: userId }).returning('id').update(newUsername)
+            .then(ids => {
+                const [id] = ids;
+                return findById(id);
             })
 }
