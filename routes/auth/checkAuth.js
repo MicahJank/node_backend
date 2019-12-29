@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken');
+const { jwtSecret } = require('../../config/secrets.js');
+
 module.exports = (req, res, next) => {    
     // if you already have the decodedJwt there is no reason to verify it - therefore we can call next
     if(req.decodedJwt) {

@@ -8,7 +8,6 @@ const genToken = require('../genToken.js');
 // no need to add /register - that is already being used when we call router.use() in apiRouter
 router.post('/', (req, res) => {
    const user = req.body;
-   console.log("TCL: user", user)
 
    const hash = bcrypt.hashSync(user.password, 6);
    user.password = hash;
