@@ -49,7 +49,13 @@ describe('users-router testing', () => {
 
     describe('DELETE a specific user at endpoint /api/users', () => {
         it('should return 200 OK', async () => {
-            
+            const res = await request(server).delete('/api/users').set('Authorization', `Bearer ${token}`);
+
+            expect(res.status).toBe(200);
+            expect(Array.isArray(res.body.users)).toBe(true);
+            expect(res.body.message).toBeDefined();
+            expect(typeof res.body.message).toBe('string');
+            expect(res.body.message).toMatch('successfully');
         })
     })
 })

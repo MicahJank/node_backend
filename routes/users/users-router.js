@@ -32,8 +32,27 @@ router.put('/', (req, res) => {
             res.json(updatedUser);
         })
         .catch(err => {
-        console.log("TCL: res", res.error)
             res.status(500).json({ message: 'There was an error while trying to update the username', error: err });
+        });
+});
+
+// /api/users
+// deletes the user from the database
+router.delete('/', (req, res) => {
+    const { id } = req.decodedJwt;
+
+    Users.removeUser(id)
+        .then(users => {
+            res.json({
+                message: 'User has been deleted successfully.',
+                users
+            })
+        })
+        .catch(err => {
+            res.status(500).json({ 
+                message: 'There was an error while trying to delete the user from the database.',
+                error: err
+            });
         });
 });
 
