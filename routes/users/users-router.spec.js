@@ -23,11 +23,27 @@ describe('users-router testing', () => {
 
             expect(res.status).toBe(200);
         })
+
+        it('res should return be a json object', async () => {
+            const res = await request(server).get('/api/users').set('Authorization', `Bearer ${token}`);
+
+            expect(res.type).toBe('application/json');
+        })
+
+        it('res should return an array in the body', async () => {
+            const res = await request(server).get('/api/users').set('Authorization', `Bearer ${token}`);
+
+            expect(Array.isArray(res.body)).toBe(true);
+        })
     })
 
     describe('PUT/UPDATE a specific user at endpoint /api/users', () => {
         it('should return 200 OK', async () => {
-
+            const res = await request(server).put('/api/users').send({ username: 'UpdatedJenny' }).set('Authorization', `Bearer ${token}`);
+            
+            expect(res.status).toBe(200);
+            expect(res.type).toBe('application/json');
+            expect(res.body.username).toBe('UpdatedJenny');
         })
     })
 
