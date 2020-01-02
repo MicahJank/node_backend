@@ -15,7 +15,7 @@ App rates and ranks hacker news commenters by negativity of comment sentiment (l
 ## A Note About Authenticated Routes
 
 #### - Routes that require authentication(i.e. needs a token sent in the header) will be labeled as such with the '- AUTH REQUIRED' tag in this README
-####  - All tokens that are sent in the request header MUST CONTAIN a header type of 'Bearer' before the token - If the Bearer is not supplied your request will fail with a status 400 and a message telling you that it was unable to verify the authorization header type. Please also note that there must be a space between the keyword 'Bearer' and the followning token.
+####  - All tokens that are sent in the request header MUST CONTAIN a header type of 'Bearer' before the token - If the Bearer is not supplied your request will fail with a status 400 and a message telling you that it was unable to verify the authorization header type. Please also note that there must be a space between the keyword 'Bearer' and the following token.
 ##### Example of correct Authorization header:
 ```
 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJ1c2VyMiIsImlhdCI6MTU3NzUwNjc2MiwiZXhwIjoxNTc3NTkzMTYyfQ.VFSJTA8TWKyoS84HQXrsM1xe07Cj-b83aRql8NNGEvg'
