@@ -38,10 +38,10 @@ function removeUser(id) {
             })
 }
 
-function updateUsername(userId, newUsername) {
-    return db('users').where({ id: userId }).returning('id').update(newUsername)
+function updateUsername(id, newUsername) {
+    return db('users').returning('id').where({ id: 5 }).update(newUsername)
             .then(ids => {
-                const [id] = ids;
+            const [id] = ids;
                 return findById(id);
             })
 }

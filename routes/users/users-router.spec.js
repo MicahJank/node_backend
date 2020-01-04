@@ -6,13 +6,9 @@ const db = require('../../data/dbConfig.js');
 let token;
 // create a new user we can test the user-router routes with
 beforeAll( async () => {
-    await db('users').where({username: 'Jenny'}).truncate();
+    await db.seed.run(db);
    const res = await request(server).post('/api/register').send({ username: 'Jenny', password: 'secretpassword' });
    token = res.body.token;
-})
-
-afterAll(async () => {
-    await db('users').where({username: 'Jenny'}).truncate();
 })
 
 describe('users-router testing', () => {
