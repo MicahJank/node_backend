@@ -13,8 +13,19 @@ function findSaved(users_id) {
     return db('comments').where({ users_id }).select('id', 'troll_username', 'comment_toxicity', 'comment');
 }
 
-function findById(id) {
-    return db('comments').where({id}).first();
+// to avoid users from deleting other users comments, we need to verify specifically that the comment id the user is deleting is a part
+// of their saved comments
+function findById(id, users_id) {
+    // findSaved will return the currently logged in users saved comments
+    return findSaved(users_id)
+            .then(comments => {
+                // if the comment id we are trying to delete matches a comment id in the array that means the comment is the saved users comment
+                if(comments.some(comment => comment.id === id)) {
+                    return db('comments').where({id}).first();
+                } else {
+                    throw 'Cannot find comment with specified id.';
+                }
+            })
 }
 
 // saves the comment to the database and returns a list of all saved comments by the current user
