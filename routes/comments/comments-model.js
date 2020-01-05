@@ -3,13 +3,18 @@ const db = require('../../data/dbConfig.js');
 module.exports = {
     findSaved,
     saveComment,
-    deleteComment
+    deleteComment,
+    findById
 }
 
 // returns all the comments the current user has saved in the database
 // it is important to note that we are ONLY returning comments that belong to the user id that is passed in
 function findSaved(users_id) {
     return db('comments').where({ users_id }).select('id', 'troll_username', 'comment_toxicity', 'comment');
+}
+
+function findById(id) {
+    return db('comments').where({id}).first();
 }
 
 // saves the comment to the database and returns a list of all saved comments by the current user

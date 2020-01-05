@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const Comments = require('./comments-model.js');
 
+const verifyId = require('./verifyId.js');
+
 
 // /api/comments
 router.get('/', (req, res) => {
@@ -32,7 +34,7 @@ router.post('/', (req, res) => {
 
 
 // /api/comments
-router.delete('/', (req, res) => {
+router.delete('/', verifyId, (req, res) => {
     const { id } = req.body;
 
     Comments.deleteComment(id)

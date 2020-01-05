@@ -39,7 +39,7 @@ function removeUser(id) {
 }
 
 function updateUsername(id, newUsername) {
-    return db('users').returning('id').where({ id: 5 }).update(newUsername)
+    return db('users').returning('id').where({ id }).update(newUsername)
             .then(ids => {
             const [id] = ids;
                 return findById(id);
