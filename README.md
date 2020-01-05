@@ -142,3 +142,124 @@ Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5h
     ]
 }
 ```
+
+
+### /api/comments GET - AUTH REQUIRED
+
+#### Expected Headers:
+```
+Content-Type: application/json
+Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNTc3NTAxMDIyLCJleHAiOjE1Nzc1ODc0MjJ9.6nFAmcA0CQfXqeRd1c4Pw1EY8AYmCRL99TU3olX9W_U'
+```
+
+#### Expected Return Data
+```
+[
+    {
+        "id": 1,
+        "troll_username": "TrollMaster",
+        "comment_toxicity": 0.1,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+        "id": 4,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.5,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+       "id": 5,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.9,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+]
+```
+
+
+### /api/comments POST - AUTH REQUIRED
+
+#### Expected Headers:
+```
+Content-Type: application/json
+Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNTc3NTAxMDIyLCJleHAiOjE1Nzc1ODc0MjJ9.6nFAmcA0CQfXqeRd1c4Pw1EY8AYmCRL99TU3olX9W_U'
+```
+
+#### Expected Request Body:
+```
+{
+	"troll_username": "Batman",
+	"comment_toxicity": 0.4,
+	"comment": "He has the power to take out the entire human race and if we believe there is even a one percent chance that he is our enemy, we have to take it as an absolute certainty!"
+}
+```
+
+#### Expected Return Data
+```
+[
+    {
+        "id": 1,
+        "troll_username": "TrollMaster",
+        "comment_toxicity": 0.1,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+        "id": 4,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.5,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+       "id": 5,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.9,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+    "id": 6
+	"troll_username": "Batman",
+	"comment_toxicity": 0.4,
+	"comment": "He has the power to take out the entire human race and if we believe there is even a one percent chance that he is our enemy, we have to take it as an absolute certainty!"
+    }
+]
+```
+
+
+### /api/comments DELETE - AUTH REQUIRED
+
+#### Expected Headers:
+```
+Content-Type: application/json
+Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNTc3NTAxMDIyLCJleHAiOjE1Nzc1ODc0MjJ9.6nFAmcA0CQfXqeRd1c4Pw1EY8AYmCRL99TU3olX9W_U'
+```
+
+#### Expected Request Body:
+```
+{
+	"id": 6
+}
+```
+
+#### Expected Return Data
+```
+[
+    {
+        "id": 1,
+        "troll_username": "TrollMaster",
+        "comment_toxicity": 0.1,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+        "id": 4,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.5,
+        "comment": "Never gonna give you up, never gonna let you down."
+    },
+    {
+       "id": 5,
+        "troll_username": "RollyTrolly",
+        "comment_toxicity": 0.9,
+        "comment": "Never gonna give you up, never gonna let you down."
+    }
+]
+```
