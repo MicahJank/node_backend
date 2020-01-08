@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 
 // /api/comments
-router.post('/:id', (req, res) => {
+router.post('/', (req, res) => {
     const comment = req.body;
     const { id } = req.decodedJwt;
     Comments.saveComment(comment, id)
