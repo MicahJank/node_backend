@@ -4,6 +4,8 @@ const Users = require('./users-model.js');
 
 const checkAuth = require('../auth/checkAuth.js');
 
+const verifyBody = require('./verifyBody-middleware.js');
+
 
 // /api/users
 // returns a list of all users registered
@@ -20,7 +22,7 @@ router.get('/', (req, res) => {
 
 // /api/users
 // updates username
-router.put('/', (req, res) => {
+router.put('/', verifyBody, (req, res) => {
     // the id of the currently logged in user
     const { id } = req.decodedJwt;
 
