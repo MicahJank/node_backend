@@ -22,20 +22,25 @@ router.get('/', (req, res) => {
 
 // /api/users
 // updates username
-router.put('/', verifyBody, (req, res) => {
+router.put('/', (req, res) => {
     // the id of the currently logged in user
     const { id } = req.decodedJwt;
 
     // the new username the user wants
     const newUsername = req.body.username;
 
-    Users.updateUsername(id, {username: newUsername})
-        .then(updatedUser => {
-            res.json(updatedUser);
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'There was an error while trying to update the username', error: err });
-        });
+    if (newUsername) {
+        Users.updateUsername(id, {username: newUsername})
+            .then(updatedUser => {
+                res.json(updatedUser);
+            })
+            .catch(err => {
+                res.status(400).json({ message: 'That username already exists', error: err });
+            });
+    } else {
+        res.status(400).json({ message: 'Missing body data, please make sure you are passing a username in the request body.'})
+    }
+   
 });
 
 // /api/users
