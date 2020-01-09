@@ -2,11 +2,12 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model.js');
+const verifyBody = require('./verifyBody.js');
 
 const genToken = require('../genToken.js');
 
 // no need to add /register - that is already being used when we call router.use() in apiRouter
-router.post('/', (req, res) => {
+router.post('/', verifyBody, (req, res) => {
    const user = req.body;
 
    const hash = bcrypt.hashSync(user.password, 6);

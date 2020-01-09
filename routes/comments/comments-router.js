@@ -23,13 +23,17 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const comment = req.body;
     const { id } = req.decodedJwt;
-    Comments.saveComment(comment, id)
-        .then(comments => {
-            res.status(201).json(comments);
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Error while trying to save the comment', err });
-        });
+    if(comment.troll_username && comment.comment_toxicity && comment.comment) {
+        Comments.saveComment(comment, id)
+            .then(comments => {
+                res.status(201).json(comments);
+            })
+            .catch(err => {
+                res.status(500).json({ message: 'Error while trying to save the comment', err });
+            });
+    } else {
+        res.status(400).json({ message: 'Missing data in the request body. Please make sure you have the fields of troll_username, comment_toxicity and comment.'})
+    }
 });
 
 
