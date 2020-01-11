@@ -4,6 +4,7 @@ exports.up = function(knex) {
       tbl.increments();
 
       tbl.string('username', 255).notNullable().unique();
+      tbl.string('email', 255).unique();
       tbl.string('password', 255).notNullable();
   });
 };

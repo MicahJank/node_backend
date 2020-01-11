@@ -10,7 +10,7 @@ let id;
 // create a new user we can test the comments-router routes with
 beforeAll( async () => {
     await db.seed.run(db);
-    const res = await request(server).post('/api/register').send({ username: 'Micah', password: 'shamalamadingdong' });
+    const res = await request(server).post('/api/register').send({ username: 'Micah', email: 'micah@gmail.com', password: 'shamalamadingdong' });
     token = res.body.token;
     id = res.body.created_user.id;
 });

@@ -7,7 +7,7 @@ let token;
 // create a new user we can test the user-router routes with
 beforeAll( async () => {
     await db.seed.run(db);
-   const res = await request(server).post('/api/register').send({ username: 'Jenny', password: 'secretpassword' });
+   const res = await request(server).post('/api/register').send({ username: 'Jenny', email: 'jenny@jenny.com', password: 'secretpassword' });
    token = res.body.token;
 })
 

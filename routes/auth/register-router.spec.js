@@ -6,7 +6,7 @@ const db = require('../../data/dbConfig.js');
 let user;
 beforeAll(async () => {
     await db.seed.run(db);
-    user =  await request(server).post('/api/register').send({ username: 'John', password: 'johnsnewpassword' });
+    user =  await request(server).post('/api/register').send({ username: 'John', email: 'john@johnny.com', password: 'johnsnewpassword' });
 });
 
 describe('register-router testing', () => {

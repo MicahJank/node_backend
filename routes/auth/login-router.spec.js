@@ -6,7 +6,7 @@ const db = require('../../data/dbConfig.js');
 // create a new user we can test logging in with
 beforeAll( async () => {
     await db.seed.run(db);
-    await request(server).post('/api/register').send({ username: 'Micah', password: 'secretpassword' });
+    await request(server).post('/api/register').send({ username: 'Micah', email: 'micah@micah.com', password: 'secretpassword' });
 })
 
 describe('login router tests', () => {
