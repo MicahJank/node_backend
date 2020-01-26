@@ -16,7 +16,7 @@ configureMiddleware(server);
 // this is the route that will use graphql to get all our data schema will be defined in a separate file which we can import above
 server.use('/graphql', graphqlHTTP({
     schema, // remember - this is shorthand for schema: schema
-    graphiql: true
+    graphiql: process.env.GRAPHQL_GUI || true
 }));
 
 
