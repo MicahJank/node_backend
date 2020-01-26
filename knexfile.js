@@ -6,7 +6,12 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: {
+      host: 'localhost',
+      user: 'admin',
+      password: process.env.DB_PASSWORD,
+      database: 'hacker-news'
+    },
     migrations: {
       directory: './data/migrations',
     },
