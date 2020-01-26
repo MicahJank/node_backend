@@ -4,14 +4,17 @@ exports.seed = function(knex) {
   return knex('users').insert([
     {
       username: 'fakeUser1',
+      email: 'fakeEmail1',
       password: 'hashPassWord'
     },
     {
       username: 'fakeUser2',
+      email: 'fakeEmail2',
       password: 'hashPassWord'
     },
     {
       username: 'fakeUser3',
+      email: 'fakeEmail3',
       password: 'hashPassWord'
     },
     {
