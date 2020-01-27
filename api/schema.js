@@ -1,5 +1,7 @@
 // --- this file is used by the server at the /graphql endpoint -- look at the server.js file to see more
 
+const axios = require('axios');
+
 // bringing in the model files because i want to use the model functions to get the data
 const Users = require('../routes/users/users-model.js');
 const Comments = require('../routes/comments/comments-model.js');
@@ -18,8 +20,8 @@ const UserType = new GraphQLObjectType({
    }) 
 });
 
-const CommentType = new GraphQLObjectType({
-    name: 'Comment',
+const SavedCommentType = new GraphQLObjectType({
+    name: 'SavedComment',
     fields: () => ({
         id: { type: GraphQLInt },
         troll_username: { type: GraphQLString },
@@ -28,6 +30,16 @@ const CommentType = new GraphQLObjectType({
         // users_id: { type: GraphQLInt }
     }) 
  });
+
+ const CommentType = new GraphQLObjectType({
+     name: 'Comment',
+     fields: () => ({
+         author: { type: GraphQLString },
+         id: { type: GraphQLInt },
+         text: { type: GraphQLString },
+         tox: { type: GraphQLFloat }
+     })
+ })
 
  // Root Query -- think of this like the routes that you make in express
  // we are building out the different datasets and will be using our model files
@@ -49,8 +61,8 @@ const CommentType = new GraphQLObjectType({
             }
          },
          // gets a list of comments for a specific user
-         comments: {
-             type: new GraphQLList(CommentType),
+         savedComments: {
+             type: new GraphQLList(SavedCommentType),
              args: {
                  users_id: { type: GraphQLInt } // below in the resolve i can now use the users_id inside the findSaved parameter
              },
@@ -59,6 +71,15 @@ const CommentType = new GraphQLObjectType({
                     .then(res => res)
                     .catch(err => console.log(err));
 
+             }
+         },
+         // comments from the DS api
+         comments: {
+             type: new GraphQLList(CommentType),
+             resolve(parent, args) {
+                 return axios.get('https://unit3-build-dummy-api.herokuapp.com/feed')
+                    .then(res => res.data)
+                    .catch(err => console.log(err));
              }
          },
          // gets a user by their username
