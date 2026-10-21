@@ -263,3 +263,7 @@ Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5h
     }
 ]
 ```
+
+### Required authentication configuration
+
+Set `JWT_SECRET` to a strong, unique private value before starting the server or running authentication tests. Startup fails if it is missing or blank. Copy `.env.example` only when using dotenv, or set the value in the shell or hosting secret store. Rotate any formerly shared signing key before reusing a deployment; this invalidates existing sessions.
